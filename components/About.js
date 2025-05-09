@@ -51,9 +51,9 @@ const translations = {
 }
 
 export default function About() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
-  const isArabic = language === "ar"
+  const isRTL = language === "ar"
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -72,14 +72,14 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="about" className={`py-20 bg-gray-50 ${isRTL ? tajawalClass : ""}`}>
       <div className="container mx-auto px-4">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className={`text-center mb-16 ${isArabic ? "rtl" : ""}`}
+          className={`text-center mb-16 ${isRTL ? "rtl" : ""}`}
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4">
             {t.title}
@@ -89,9 +89,9 @@ export default function About() {
           </motion.p>
         </motion.div>
 
-        <div className={`flex flex-col md:flex-row gap-10 mb-20 ${isArabic ? "md:flex-row-reverse" : ""}`}>
+        <div className={`flex flex-col md:flex-row gap-10 mb-20 ${isRTL ? "md:flex-row-reverse" : ""}`}>
           <motion.div
-            initial={{ opacity: 0, x: isArabic ? 50 : -50 }}
+            initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
@@ -112,14 +112,17 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={`md:w-1/2 ${isArabic ? "text-right" : ""}`}
+            className={`md:w-1/2 ${isRTL ? "text-right" : ""}`}
           >
             <motion.p variants={itemVariants} className="text-lg mb-8">
               {t.description}
             </motion.p>
 
             <div className="space-y-6">
-              <motion.div variants={itemVariants} className="flex items-start gap-4">
+              <motion.div
+                variants={itemVariants}
+                className={`flex items-start ${isRTL ? "flex-row-reverse" : ""} gap-4`}
+              >
                 <div className="bg-[#FFE662] p-3 rounded-full">
                   <BookOpen className="h-6 w-6" />
                 </div>
@@ -129,7 +132,10 @@ export default function About() {
                 </div>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="flex items-start gap-4">
+              <motion.div
+                variants={itemVariants}
+                className={`flex items-start ${isRTL ? "flex-row-reverse" : ""} gap-4`}
+              >
                 <div className="bg-[#FFE662] p-3 rounded-full">
                   <MessageCircle className="h-6 w-6" />
                 </div>
@@ -139,7 +145,10 @@ export default function About() {
                 </div>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="flex items-start gap-4">
+              <motion.div
+                variants={itemVariants}
+                className={`flex items-start ${isRTL ? "flex-row-reverse" : ""} gap-4`}
+              >
                 <div className="bg-[#FFE662] p-3 rounded-full">
                   <Mic className="h-6 w-6" />
                 </div>
@@ -157,20 +166,20 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className={`bg-black text-white p-8 md:p-12 rounded-2xl ${isArabic ? "rtl" : ""}`}
+          className={`bg-black text-white p-8 md:p-12 rounded-2xl ${isRTL ? "rtl" : ""}`}
         >
-          <div className={`flex flex-col md:flex-row items-center gap-8 ${isArabic ? "md:flex-row-reverse" : ""}`}>
+          <div className={`flex flex-col md:flex-row items-center gap-8 ${isRTL ? "md:flex-row-reverse" : ""}`}>
             <div className="md:w-1/4 flex justify-center">
               <div className="relative h-40 w-40 rounded-full overflow-hidden border-4 border-[#FFE662]">
                 <Image
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/picme.png?height=200&width=200"
                   alt="Professor Yahya"
                   fill
                   className="object-cover"
                 />
               </div>
             </div>
-            <div className={`md:w-3/4 ${isArabic ? "text-right" : ""}`}>
+            <div className={`md:w-3/4 ${isRTL ? "text-right" : ""}`}>
               <h3 className="text-2xl font-bold mb-4">{t.teacher}</h3>
               <p className="text-lg">{t.teacherDescription}</p>
             </div>

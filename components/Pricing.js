@@ -37,19 +37,19 @@ const translations = {
 }
 
 export default function Pricing() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
-  const isArabic = language === "ar"
+  const isRTL = language === "ar"
 
   return (
-    <section id="pricing" className="py-20">
+    <section id="pricing" className={`py-20 ${isRTL ? tajawalClass : ""}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className={`text-center mb-16 ${isArabic ? "rtl" : ""}`}
+          className={`text-center mb-16 ${isRTL ? "rtl" : ""}`}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.subtitle}</p>
@@ -63,7 +63,7 @@ export default function Pricing() {
           className="max-w-lg mx-auto"
         >
           <div
-            className={`bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#FFE662] ${isArabic ? "rtl text-right" : ""}`}
+            className={`bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#FFE662] ${isRTL ? "rtl text-right" : ""}`}
           >
             <div className="bg-black text-white p-8 text-center">
               <h3 className="text-2xl font-bold mb-2">{t.monthlyPrice}</h3>
@@ -73,7 +73,7 @@ export default function Pricing() {
             <div className="p-8">
               <ul className="space-y-4 mb-8">
                 {t.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3">
+                  <li key={index} className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
                     <div className="bg-[#FFE662] rounded-full p-1">
                       <Check className="h-4 w-4" />
                     </div>

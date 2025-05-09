@@ -1,8 +1,9 @@
-import { Inter } from "next/font/google"
+import { Inter, Tajawal } from "next/font/google"
 import "./globals.css"
 import { LanguageProvider } from "@/context/LanguageContext"
 
 const inter = Inter({ subsets: ["latin"] })
+const tajawal = Tajawal({ subsets: ["arabic"], weight: ["400", "500", "700"] })
 
 export const metadata = {
   title: "LexiYa | Tutorat d'Anglais à Agadir",
@@ -16,7 +17,6 @@ export const metadata = {
       "Cours d'anglais personnalisés à Agadir pour les jeunes de 10 à 18 ans. Améliorez votre vocabulaire, accent et communication avec le professeur Yahya.",
     images: ["/images/tutoring-hero.jpg"],
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({ children }) {
@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         </script>
       </head>
       <body className={inter.className}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider tajawalClass={tajawal.className}>{children}</LanguageProvider>
       </body>
     </html>
   )

@@ -19,7 +19,7 @@ const translations = {
     home: "الرئيسية",
     about: "من نحن",
     services: "خدماتنا",
-    testimonials: "آراء الطلاب",
+    "آراء الطلاب": "testimonials",
     pricing: "الأسعار",
     contact: "اتصل بنا",
     language: "اللغة",
@@ -27,10 +27,11 @@ const translations = {
 }
 
 export default function Navbar() {
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, tajawalClass } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const t = translations[language]
+  const isRTL = language === "ar"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,38 +56,66 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-black text-white shadow-lg" : "bg-transparent text-black"}`}
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-black text-white shadow-lg" : "bg-transparent text-black"} ${isRTL ? tajawalClass : ""}`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className={`flex ${isRTL ? "flex-row-reverse" : ""} justify-between items-center h-20`}>
           <Link href="/" className="font-bold text-2xl flex items-center">
-            <span className={`${language === "ar" ? "ml-2" : "mr-2"}`}>LexiYa</span>
+            <span className={`${isRTL ? "ml-2" : "mr-2"}`}>LexiYa</span>
             <span className="text-[#FFE662]">.</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className={`hidden md:flex space-x-8 ${language === "ar" ? "flex-row-reverse space-x-reverse" : ""}`}>
-            <Link href="#home" className="hover:text-[#FFE662] transition-colors">
-              {t.home}
-            </Link>
-            <Link href="#about" className="hover:text-[#FFE662] transition-colors">
-              {t.about}
-            </Link>
-            <Link href="#services" className="hover:text-[#FFE662] transition-colors">
-              {t.services}
-            </Link>
-            <Link href="#testimonials" className="hover:text-[#FFE662] transition-colors">
-              {t.testimonials}
-            </Link>
-            <Link href="#pricing" className="hover:text-[#FFE662] transition-colors">
-              {t.pricing}
-            </Link>
-            <Link href="#contact" className="hover:text-[#FFE662] transition-colors">
-              {t.contact}
-            </Link>
-            <button onClick={toggleLanguage} className="hover:text-[#FFE662] transition-colors">
-              {language === "fr" ? "العربية" : "Français"}
-            </button>
+          <div className={`hidden md:flex ${isRTL ? " space-x-4 space-x-reverse" : "space-x-4"}`}>
+            {isRTL ? (
+              <>
+                <button onClick={toggleLanguage} className="hover:text-[#FFE662] transition-colors mx-4">
+                  {language === "fr" ? "العربية" : "Français"}
+                </button>
+                <Link href="#contact" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.contact}
+                </Link>
+                <Link href="#pricing" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.pricing}
+                </Link>
+                <Link href="#testimonials" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.testimonials}
+                </Link>
+                <Link href="#services" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.services}
+                </Link>
+                <Link href="#about" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.about}
+                </Link>
+                <Link href="#home" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.home}
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="#home" className="hover:text-[#FFE662] transition-colors mx-4 ">
+                  {t.home}
+                </Link>
+                <Link href="#about" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.about}
+                </Link>
+                <Link href="#services" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.services}
+                </Link>
+                <Link href="#testimonials" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.testimonials}
+                </Link>
+                <Link href="#pricing" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.pricing}
+                </Link>
+                <Link href="#contact" className="hover:text-[#FFE662] transition-colors mx-4">
+                  {t.contact}
+                </Link>
+                <button onClick={toggleLanguage} className="hover:text-[#FFE662] transition-colors mx-4">
+                  {language === "fr" ? "العربية" : "Français"}
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -104,7 +133,7 @@ export default function Navbar() {
           exit={{ opacity: 0, height: 0 }}
           className="md:hidden bg-black text-white"
         >
-          <div className={`flex flex-col p-4 ${language === "ar" ? "text-right" : "text-left"}`}>
+          <div className={`flex flex-col p-4 ${isRTL ? "text-right" : "text-left"}`}>
             <Link href="#home" className="py-2" onClick={() => setIsOpen(false)}>
               {t.home}
             </Link>
@@ -123,7 +152,7 @@ export default function Navbar() {
             <Link href="#contact" className="py-2" onClick={() => setIsOpen(false)}>
               {t.contact}
             </Link>
-            <button onClick={toggleLanguage} className="py-2 text-left">
+            <button onClick={toggleLanguage} className={`py-2 ${isRTL ? "text-right" : "text-left"}`}>
               {language === "fr" ? "العربية" : "Français"}
             </button>
           </div>

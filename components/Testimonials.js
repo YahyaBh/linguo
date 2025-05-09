@@ -61,9 +61,9 @@ const translations = {
 }
 
 export default function Testimonials() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
-  const isArabic = language === "ar"
+  const isRTL = language === "ar"
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -76,14 +76,14 @@ export default function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-50">
+    <section id="testimonials" className={`py-20 bg-gray-50 ${isRTL ? tajawalClass : ""}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className={`text-center mb-16 ${isArabic ? "rtl" : ""}`}
+          className={`text-center mb-16 ${isRTL ? "rtl" : ""}`}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.subtitle}</p>
@@ -93,11 +93,11 @@ export default function Testimonials() {
           <div className="relative">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              exit={{ opacity: 0, x: isRTL ? 20 : -20 }}
               transition={{ duration: 0.5 }}
-              className={`bg-white p-8 md:p-12 rounded-2xl shadow-xl ${isArabic ? "rtl text-right" : ""}`}
+              className={`bg-white p-8 md:p-12 rounded-2xl shadow-xl ${isRTL ? "rtl text-right" : ""}`}
             >
               <div className="flex justify-center mb-8">
                 {[...Array(t.testimonials[currentIndex].rating)].map((_, i) => (
@@ -110,7 +110,7 @@ export default function Testimonials() {
 
               <p className="text-lg md:text-xl mb-8 italic">"{t.testimonials[currentIndex].text}"</p>
 
-              <div className="flex items-center justify-center gap-4">
+              <div className={`flex items-center ${isRTL ? "justify-end" : "justify-center"} gap-4`}>
                 <div className="relative h-12 w-12 rounded-full overflow-hidden">
                   <Image
                     src="/placeholder.svg?height=100&width=100"
@@ -124,17 +124,17 @@ export default function Testimonials() {
             </motion.div>
 
             <button
-              onClick={prevTestimonial}
-              className="absolute top-1/2 -translate-y-1/2 left-0 -ml-5 md:-ml-6 bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors"
-              aria-label="Previous testimonial"
+              onClick={isRTL ? nextTestimonial : prevTestimonial}
+              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? "right" : "left"}-0 ${isRTL ? "-mr-5 md:-mr-6" : "-ml-5 md:-ml-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
+              aria-label={isRTL ? "Next testimonial" : "Previous testimonial"}
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
 
             <button
-              onClick={nextTestimonial}
-              className="absolute top-1/2 -translate-y-1/2 right-0 -mr-5 md:-mr-6 bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors"
-              aria-label="Next testimonial"
+              onClick={isRTL ? prevTestimonial : nextTestimonial}
+              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? "left" : "right"}-0 ${isRTL ? "-ml-5 md:-ml-6" : "-mr-5 md:-mr-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
+              aria-label={isRTL ? "Previous testimonial" : "Next testimonial"}
             >
               <ChevronRight className="h-6 w-6" />
             </button>

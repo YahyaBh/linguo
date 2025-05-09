@@ -23,17 +23,15 @@ const translations = {
 }
 
 export default function Footer() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
-  const isArabic = language === "ar"
+  const isRTL = language === "ar"
 
   return (
-    <footer className="bg-black text-white py-10">
+    <footer className={`bg-black text-white py-10 ${isRTL ? tajawalClass : ""}`}>
       <div className="container mx-auto px-4">
-        <div
-          className={`flex flex-col md:flex-row justify-between items-center ${isArabic ? "md:flex-row-reverse" : ""}`}
-        >
-          <div className={`mb-6 md:mb-0 ${isArabic ? "text-right" : "text-left"}`}>
+        <div className={`flex flex-col md:flex-row justify-between items-center ${isRTL ? "md:flex-row-reverse" : ""}`}>
+          <div className={`mb-6 md:mb-0 ${isRTL ? "text-right" : "text-left"}`}>
             <Link href="/" className="text-2xl font-bold">
               LexiYa<span className="text-[#FFE662]">.</span>
             </Link>
@@ -41,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div
-            className={`flex flex-col md:flex-row gap-6 md:gap-10 ${isArabic ? "text-right md:flex-row-reverse" : "text-left"}`}
+            className={`flex flex-col md:flex-row gap-6 md:gap-10 ${isRTL ? "text-right md:flex-row-reverse" : "text-left"}`}
           >
             <Link href="/privacy" className="hover:text-[#FFE662] transition-colors">
               {t.links.privacy}
@@ -54,7 +52,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="flex gap-4 mt-6 md:mt-0">
+          <div className={`flex gap-4 mt-6 md:mt-0 ${isRTL ? "flex-row-reverse" : ""}`}>
             <a href="#" className="bg-white text-black p-2 rounded-full hover:bg-[#FFE662] transition-colors">
               <Facebook className="h-5 w-5" />
             </a>

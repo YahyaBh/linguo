@@ -12,7 +12,7 @@ import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
 
 export default function Home() {
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, tajawalClass } = useLanguage()
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className={language === "ar" ? tajawalClass : ""}>
       <Navbar />
       <Hero />
       <About />

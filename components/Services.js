@@ -74,25 +74,25 @@ const translations = {
 }
 
 export default function Services() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
-  const isArabic = language === "ar"
+  const isRTL = language === "ar"
 
   return (
-    <section id="services" className="py-20">
+    <section id="services" className={`py-20 ${isRTL ? tajawalClass : ""}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className={`text-center mb-16 ${isArabic ? "rtl" : ""}`}
+          className={`text-center mb-16 ${isRTL ? "rtl" : ""}`}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.subtitle}</p>
         </motion.div>
 
-        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 ${isArabic ? "rtl" : ""}`}>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 ${isRTL ? "rtl" : ""}`}>
           {t.services.map((service, index) => (
             <motion.div
               key={index}
@@ -102,7 +102,9 @@ export default function Services() {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-[#FFE662]"
             >
-              <div className="bg-[#FFE662] inline-flex p-3 rounded-lg mb-6">{service.icon}</div>
+              <div className={`flex ${isRTL ? "justify-end" : "justify-start"}`}>
+                <div className="bg-[#FFE662] inline-flex p-3 rounded-lg mb-6">{service.icon}</div>
+              </div>
               <h3 className="text-xl font-bold mb-4">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
             </motion.div>

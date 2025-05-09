@@ -22,8 +22,9 @@ const translations = {
 }
 
 export default function Hero() {
-  const { language } = useLanguage()
+  const { language, tajawalClass } = useLanguage()
   const t = translations[language]
+  const isRTL = language === "ar"
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,7 +43,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20">
+    <section id="home" className={`relative min-h-screen flex items-center pt-20 ${isRTL ? tajawalClass : ""}`}>
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -56,7 +57,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 z-10">
         <div
-          className={`flex flex-col md:flex-row items-center ${language === "ar" ? "md:flex-row-reverse text-right" : "text-left"}`}
+          className={`flex flex-col md:flex-row items-center ${isRTL ? "md:flex-row-reverse text-right" : "text-left"}`}
         >
           <motion.div
             variants={containerVariants}
@@ -74,15 +75,16 @@ export default function Hero() {
             <motion.p variants={itemVariants} className="text-lg mb-8 max-w-lg">
               {t.description}
             </motion.p>
-            <motion.a
-              variants={itemVariants}
-              href="https://wa.me/+212665845124?text=Je%20suis%20intéressé%20par%20un%20cours%20d'essai%20gratuit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#FFE662] text-black font-bold py-3 px-8 rounded-full hover:bg-black hover:text-[#FFE662] transition-colors shadow-lg"
-            >
-              {t.cta}
-            </motion.a>
+            <motion.div variants={itemVariants} className={`${isRTL ? "text-right" : "text-left"}`}>
+              <a
+                href="https://wa.me/+212665845124?text=Je%20suis%20intéressé%20par%20un%20cours%20d'essai%20gratuit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#FFE662] text-black font-bold py-3 px-8 rounded-full hover:bg-black hover:text-[#FFE662] transition-colors shadow-lg"
+              >
+                {t.cta}
+              </a>
+            </motion.div>
           </motion.div>
 
           <motion.div

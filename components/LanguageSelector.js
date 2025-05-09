@@ -13,7 +13,7 @@ export default function LanguageSelector({ onSelect }) {
       >
         <div className="mb-6">
           <Image
-            src="/placeholder.svg?height=80&width=80"
+            src="/logo.svg?height=80&width=80"
             alt="LexiYa Logo"
             width={80}
             height={80}

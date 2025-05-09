@@ -19,6 +19,7 @@ body {
 /* For RTL support */
 .rtl {
   direction: rtl;
+  text-align: right;
 }
 
 /* Animation classes */
@@ -53,4 +54,9 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Arabic text improvements */
+[dir="rtl"] {
+  font-feature_settings: "rlig" 1, "calt" 1;
 }
