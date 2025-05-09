@@ -92,7 +92,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="md:w-1/2"
+            className="w-full md:w-1/2"
           >
             <div className="relative h-[400px] w-full">
               <Image
