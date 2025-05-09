@@ -47,7 +47,7 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero.jpg?height=1080&width=1920"
+          src="/hero.jpg"
           alt="English tutoring background"
           fill
           priority
@@ -96,7 +96,7 @@ export default function Hero() {
           >
             <div className="relative h-[400px] w-full">
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/Learning-bro.svg?height=600&width=600"
                 alt="English tutoring"
                 fill
                 className="object-contain rounded-2xl"
