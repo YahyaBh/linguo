@@ -96,7 +96,7 @@ export default function Hero() {
           >
             <div className="relative h-[400px] w-full">
               <Image
-                src="/Learning-bro.svg?height=600&width=600"
+                src="/316535242_11350659.png"
                 alt="English tutoring"
                 fill
                 className="object-contain rounded-2xl"
