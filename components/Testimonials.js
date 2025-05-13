@@ -125,7 +125,7 @@ export default function Testimonials() {
 
             <button
               onClick={isRTL ? nextTestimonial : prevTestimonial}
-              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? "right" : "left"}-0 ${isRTL ? "-mr-5 md:-mr-6" : "-ml-5 md:-ml-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
+              className={`absolute top-1/2 -translate-y-1/2 left-0 ${isRTL ? "-mr-5 md:-mr-6" : "-ml-5 md:-ml-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
               aria-label={isRTL ? "Next testimonial" : "Previous testimonial"}
             >
               <ChevronLeft className="h-6 w-6" />
@@ -133,7 +133,7 @@ export default function Testimonials() {
 
             <button
               onClick={isRTL ? prevTestimonial : nextTestimonial}
-              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? "left" : "right"}-0 ${isRTL ? "-ml-5 md:-ml-6" : "-mr-5 md:-mr-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
+              className={`absolute top-1/2 -translate-y-1/2 right-0 ${isRTL ? "-ml-5 md:-ml-6" : "-mr-5 md:-mr-6"} bg-white rounded-full p-2 shadow-lg hover:bg-[#FFE662] transition-colors`}
               aria-label={isRTL ? "Previous testimonial" : "Next testimonial"}
             >
               <ChevronRight className="h-6 w-6" />

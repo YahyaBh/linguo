@@ -94,12 +94,15 @@ export default function Hero() {
             viewport={{ once: true }}
             className="w-full md:w-1/2"
           >
-            <div className="relative h-[400px] w-full">
+            <div className="relative h-[100dvh] w-full">
               <Image
                 src="/316535242_11350659.png"
                 alt="English tutoring"
                 fill
                 className="object-contain rounded-2xl"
+                style={{
+                  transform: isRTL ? '' : 'scaleX(-1)', 
+                }}
               />
             </div>
           </motion.div>
