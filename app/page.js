@@ -16,7 +16,6 @@ export default function Home() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
 
   useEffect(() => {
-    // Check if language is already selected in localStorage
     const savedLanguage = localStorage.getItem("preferredLanguage")
     if (savedLanguage) {
       setLanguage(savedLanguage)

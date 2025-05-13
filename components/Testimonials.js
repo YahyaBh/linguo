@@ -113,7 +113,7 @@ export default function Testimonials() {
               <div className={`flex items-center ${isRTL ? "justify-end" : "justify-center"} gap-4`}>
                 <div className="relative h-12 w-12 rounded-full overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=100&width=100"
+                    src="/placeholder.png?height=100&width=100"
                     alt={t.testimonials[currentIndex].name}
                     fill
                     className="object-cover"
